@@ -3,6 +3,9 @@ import { useChatStore } from "../store/useChatStore";
 import { useSelectedConversation } from "../hooks/useSelectedConversation";
 import { useEffect } from "react";
 import ChatSidebar from "../components/chat/ChatSidebar";
+import { ChatHeader } from "../components/chat/ChatHeader";
+import { MessageList } from "../components/chat/MessageList";
+import { ChatComposer } from "../components/chat/ChatComposer";
 
 function ChatPage() {
     const { frameStyle } = useWallpaper();
@@ -38,9 +41,11 @@ function ChatPage() {
                     className={`flex-1 flex-col overflow-hidden ${!isLargeScreen && !activeConversationId ? "hidden lg:flex" : "flex"
                         }`}
                 >
-                    Chat container
-                </div>
+                    <ChatHeader />
+                    <MessageList />
 
+                    {activeConversation ? <ChatComposer /> : null }
+                </div>
             </div>
         </div>
     )
